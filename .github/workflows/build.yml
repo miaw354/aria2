@@ -100,3 +100,8 @@ jobs:
     - name: Build aria2
       run: |
         make -j"$(nproc 2> /dev/null || sysctl -n hw.ncpu)" check
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v7.0.1
+      with:
+        name: aria2-${{ matrix.os }}-${{ matrix.compiler }}-${{ matrix.crypto }}-${{ matrix.bittorrent }}
+        path: src/aria2c
